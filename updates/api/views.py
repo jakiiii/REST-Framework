@@ -8,6 +8,8 @@ from updates.models import Update as UpdateModel
 from rest_framework.mixins import HttpResponseMixin
 from .mixins import CSRFExemptMixin
 
+from .utils import is_json
+
 
 class UpdateModelDetailAPIView(HttpResponseMixin, CSRFExemptMixin, View):
     is_json = True
@@ -35,6 +37,10 @@ class UpdateModelDetailAPIView(HttpResponseMixin, CSRFExemptMixin, View):
         if obj is None:
             error_data = json.dumps({"message": "Update Not Found."})
             return self.render_to_response(error_data, status=404)
+        valid_json = is_json(request.body)
+        if not valid_json:
+            error_data = json.dumps({"message": "Invalid data. Please send data with json format."})
+            return self.render_to_response(error_data, status=400)
         new_data = json.loads(request.body)
         print(new_data)
         json_data = json.dumps({"message": "some random message"})
@@ -58,7 +64,13 @@ class UpdateModelListAPIView(HttpResponseMixin, CSRFExemptMixin, View):
         return self.render_to_response(json_data)
 
     def post(self, request, *args, **kwargs):
-        form = UpdateModelFrom(request.POST)
+        valid_json = is_json(request.body)
+        if not valid_json:
+            error_data = json.dumps({"message": "Invalid data. Please send data with json format."})
+            return self.render_to_response(error_data, status=400)
+
+        data = json.loads(request.body)
+        form = UpdateModelFrom(data)
         if form.is_valid():
             obj = form.save(commit=True)
             obj_data = obj.serialize()

@@ -20,7 +20,7 @@ def create_update():
         'title': 'some random title',
         'content': 'some random content'
     }
-    r = requests.post(BASE_URL + ENDPOINT + "1", data=json.dumps(new_data))
+    r = requests.post(BASE_URL + ENDPOINT, data=json.dumps(new_data))
     print(r.headers)
     if r.status_code == requests.codes.ok:
         # print(r.json())
@@ -31,7 +31,7 @@ def create_update():
 def object_update():
     new_data = {
         'title': 'new random title',
-        'content': 'new random content'
+        'content': 'new random  content'
     }
     r = requests.put(BASE_URL + ENDPOINT + "1", data=json.dumps(new_data))
 
@@ -69,6 +69,6 @@ def object_delete():
 
 
 # get_list()
-# create_update()
+print(create_update())
 # print(object_update())
-print(object_delete())
+# print(object_delete())
