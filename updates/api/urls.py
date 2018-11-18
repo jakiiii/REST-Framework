@@ -7,6 +7,6 @@ from .views import (
 
 
 urlpatterns = [
-    path('list', UpdateModelListAPIView.as_view()),
-    path('detail/<int:id>', UpdateModelDetailAPIView.as_view())
+    path('', UpdateModelListAPIView.as_view()),
+    path('<int:id>', UpdateModelDetailAPIView.as_view())
 ]
