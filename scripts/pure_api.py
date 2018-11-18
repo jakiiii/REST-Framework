@@ -1,5 +1,5 @@
 import requests
-
+import json
 BASE_URL = 'http://127.0.0.1:8000/'
 ENDPOINT = 'api/updates/'
 
@@ -20,7 +20,7 @@ def create_update():
         'title': 'some random title',
         'content': 'some random content'
     }
-    r = requests.post(BASE_URL + ENDPOINT + "1", data=new_data)
+    r = requests.post(BASE_URL + ENDPOINT + "1", data=json.dumps(new_data))
     print(r.headers)
     if r.status_code == requests.codes.ok:
         # print(r.json())
@@ -28,5 +28,47 @@ def create_update():
     return r.text
 
 
+def object_update():
+    new_data = {
+        'title': 'new random title',
+        'content': 'new random content'
+    }
+    r = requests.put(BASE_URL + ENDPOINT + "1", data=json.dumps(new_data))
+
+    # new_data = {
+    #     'id': 1,
+    #     'title': 'get new title',
+    #     'content': 'get random content'
+    # }
+    # r = requests.put(BASE_URL + ENDPOINT + "1", data=new_data)
+
+    print(r.status_code)
+    if r.status_code == requests.codes.ok:
+        return r.json()
+    return r.text
+
+
+def object_delete():
+    new_data = {
+        'title': 'new random title',
+        'content': 'new random content'
+    }
+    r = requests.delete(BASE_URL + ENDPOINT + "6")
+
+    # new_data = {
+    #     'id': 1,
+    #     'title': 'get new title',
+    #     'content': 'get random content'
+    # }
+    # r = requests.put(BASE_URL + ENDPOINT + "1", data=new_data)
+
+    print(r.status_code)
+    if r.status_code == requests.codes.ok:
+        return r.json()
+    return r.text
+
+
 # get_list()
-print(create_update())
+# create_update()
+# print(object_update())
+print(object_delete())
