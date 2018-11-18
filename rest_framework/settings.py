@@ -50,6 +50,8 @@ LOCAL_APPS = [
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 
+APPEND_SLASH = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

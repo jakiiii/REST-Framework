@@ -17,9 +17,10 @@ def get_list():
 def create_update():
     new_data = {
         'user': 1,
+        'title': 'some random title',
         'content': 'some random content'
     }
-    r = requests.post(BASE_URL + ENDPOINT, data=new_data)
+    r = requests.post(BASE_URL + ENDPOINT + "1", data=new_data)
     print(r.headers)
     if r.status_code == requests.codes.ok:
         # print(r.json())

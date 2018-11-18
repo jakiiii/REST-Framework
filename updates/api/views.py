@@ -1,6 +1,8 @@
 import json
 from django.http import HttpResponse
 from django.views.generic import View
+
+from updates.forms import UpdateModelFrom
 from updates.models import Update as UpdateModel
 
 from rest_framework.mixins import HttpResponseMixin
@@ -16,8 +18,8 @@ class UpdateModelDetailAPIView(HttpResponseMixin, CSRFExemptMixin, View):
         return self.render_to_response(json_data)
 
     def post(self, request, *args, **kwargs):
-        json_data = {}
-        return self.render_to_response(json_data)
+        json_data = json.dumps({'message': 'Not allowed! Please api/updates/ create endpoint.'})
+        return self.render_to_response(json_data, status=405)
 
     def put(self, request, *args, **kwargs):
         json_data = {}
@@ -37,6 +39,14 @@ class UpdateModelListAPIView(HttpResponseMixin, CSRFExemptMixin, View):
         return self.render_to_response(json_data)
 
     def post(self, request, *args, **kwargs):
+        form = UpdateModelFrom(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=True)
+            obj_data = obj.serialize()
+            return self.render_to_response(obj_data, status=201)
+        if form.errors():
+            data = json.dumps(form.errors)
+            return self.render_to_response(data, status=400)
         data = json.dumps({'message': 'Unknown Data'})
         return self.render_to_response(data, status=400)
 
