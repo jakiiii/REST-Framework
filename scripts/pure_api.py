@@ -33,14 +33,7 @@ def object_update():
         'title': 'new random title',
         'content': 'new random  content'
     }
-    r = requests.put(BASE_URL + ENDPOINT + "1", data=json.dumps(new_data))
-
-    # new_data = {
-    #     'id': 1,
-    #     'title': 'get new title',
-    #     'content': 'get random content'
-    # }
-    # r = requests.put(BASE_URL + ENDPOINT + "1", data=new_data)
+    r = requests.put(BASE_URL + ENDPOINT + '1', data=json.dumps(new_data))
 
     print(r.status_code)
     if r.status_code == requests.codes.ok:
@@ -53,14 +46,7 @@ def object_delete():
         'title': 'new random title',
         'content': 'new random content'
     }
-    r = requests.delete(BASE_URL + ENDPOINT + "6")
-
-    # new_data = {
-    #     'id': 1,
-    #     'title': 'get new title',
-    #     'content': 'get random content'
-    # }
-    # r = requests.put(BASE_URL + ENDPOINT + "1", data=new_data)
+    r = requests.delete(BASE_URL + ENDPOINT + "10")
 
     print(r.status_code)
     if r.status_code == requests.codes.ok:
@@ -69,6 +55,6 @@ def object_delete():
 
 
 # get_list()
-print(create_update())
+# print(create_update())
 # print(object_update())
-# print(object_delete())
+print(object_delete())
