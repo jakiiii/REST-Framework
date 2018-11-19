@@ -25,7 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', DRFHomeTemplateView.as_view()),
     path('', include('updates.urls')),
-    path('api/updates/', include('updates.api.urls'))
+    path('api/updates/', include('updates.api.urls')),
+    path('', include('status.urls')),
+    path('', include('status.api.urls'))
 ]
 
 if settings.DEBUG:

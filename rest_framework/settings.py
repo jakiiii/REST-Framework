@@ -45,7 +45,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'updates'
+    'updates',
+    'status'
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
