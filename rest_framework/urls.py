@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('updates.urls')),
     path('api/updates/', include('updates.api.urls')),
     path('', include('status.urls')),
-    path('', include('status.api.urls'))
+    path('api/status/', include('status.api.urls'))
 ]
 
 if settings.DEBUG:
