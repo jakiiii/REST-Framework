@@ -5,7 +5,7 @@ from django.views.generic import View
 from updates.forms import UpdateModelFrom
 from updates.models import Update as UpdateModel
 
-from rest_framework.mixins import HttpResponseMixin
+from django_restapi.mixins import HttpResponseMixin
 from .mixins import CSRFExemptMixin
 
 from .utils import is_json

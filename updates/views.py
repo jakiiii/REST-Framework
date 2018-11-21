@@ -5,7 +5,7 @@ from django.views.generic import View
 from django.core.serializers import serialize
 
 from .models import Update
-from rest_framework.mixins import JsonResponseMixin
+from django_restapi.mixins import JsonResponseMixin
 
 
 # Create your views here.
