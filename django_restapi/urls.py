@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+
 from .views import DRFHomeTemplateView
 
 urlpatterns = [
@@ -27,7 +29,9 @@ urlpatterns = [
     path('', include('updates.urls')),
     path('api/updates/', include('updates.api.urls')),
     path('', include('status.urls')),
-    path('api/status/', include('status.api.urls'))
+    path('api/status/', include('status.api.urls')),
+    path('api/auth/jwt/', obtain_jwt_token),
+    path('api/auth/jwt/refresh/', refresh_jwt_token),
 ]
 
 if settings.DEBUG:
