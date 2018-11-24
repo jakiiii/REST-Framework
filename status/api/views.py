@@ -74,6 +74,10 @@ class StatusListSearchAPIView(mixins.CreateModelMixin, mixins.RetrieveModelMixin
         if is_json(body_):
             json_data = json.loads(request.body)
         new_passed_id = json_data.get('id', None)
+
+        requested_id = request.data.get('id')
+        passed_id = url_passed_id or new_passed_id or requested_id or None
+        self.passed_id = passed_id
         return self.update(request, *args, **kwargs)
 
     def patch(self, request, *args, **kwargs):
