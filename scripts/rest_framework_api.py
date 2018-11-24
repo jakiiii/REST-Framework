@@ -24,13 +24,32 @@ token = r.json()['token']
 
 headers = {
     "Content-Type": "application/json",
-    "Authorization": "JWT" + token
+    "Authorization": "JWT " + token
 }
 
 
-post_data = json.dumps({"content": "some random content"})
-posted_response = requests.post(ENDPOINT, data=post_data, headers=headers)
+data = {
+    "content": "UPDATED DESCRIPTION"
+}
+
+posted_response = requests.put(ENDPOINT + str(23) + "/", data=json.dumps(data), headers=headers)
 print(posted_response.text)
+
+# headers = {
+#     # "Content-Type": "application/json",
+#     "Authorization": "JWT " + token
+# }
+#
+# with open(image_path, 'rb') as image:
+#     file_data = {
+#         'image': image
+#     }
+#     data = {
+#         "content": "UPDATED DESCRIPTION"
+#     }
+#     posted_response = requests.put(ENDPOINT + str(23) + "/", data=data, headers=headers, files=file_data)
+#     print(posted_response.text)
+
 
 # get_endpoint = ENDPOINT + str(13)
 # post_data = json.dumps({'content': 'some random content for test'})
