@@ -13,10 +13,6 @@ headers = {
     "Content-Type": "application/json"
 }
 
-get_endpoint = ENDPOINT + str(13)
-post_data = json.dumps({'content': 'some random content for test'})
-
-
 data = {
     "username": 'jaki',
     "password": 'SADHIN101119'
@@ -26,13 +22,26 @@ r = requests.post(AUTH_ENDPOINT, data=json.dumps(data), headers=headers)
 token = r.json()['token']
 # print(token)
 
-new_data = {
-    'token': token
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "JWT" + token
 }
 
-new_r = requests.post(REFRESH_ENDPOINT, data=json.dumps(new_data), headers=headers)
-new_token = r.json()
-print(new_token)
+
+post_data = json.dumps({"content": "some random content"})
+posted_response = requests.post(ENDPOINT, data=post_data, headers=headers)
+print(posted_response.text)
+
+# get_endpoint = ENDPOINT + str(13)
+# post_data = json.dumps({'content': 'some random content for test'})
+
+# new_data = {
+#     'token': token
+# }
+#
+# new_r = requests.post(REFRESH_ENDPOINT, data=json.dumps(new_data), headers=headers)
+# new_token = r.json()
+# print(new_token)
 
 # r = requests.get(get_endpoint)
 # print(r.text)
