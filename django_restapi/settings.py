@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 from django.contrib.messages import constants as messages
 
+# REST FRAMEWORK PERMISSION
+from django_restapi.restconf.main import *
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -159,16 +162,3 @@ MEDIA_ROOT = os.path.join(
     os.path.dirname(BASE_DIR),
     "django_restapi/static_cdn", 'static-server', "media_root"
 )
-
-
-# REST FRAMEWORK PERMISSION
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#         'rest_framework.authentication.BasicAuthentication',
-#     ),
-# }
