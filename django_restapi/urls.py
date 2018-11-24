@@ -26,6 +26,8 @@ from .views import DRFHomeTemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', DRFHomeTemplateView.as_view()),
+    path('', include('accounts.urls')),
+    path('api/accounts/', include('updates.api.urls')),
     path('', include('updates.urls')),
     path('api/updates/', include('updates.api.urls')),
     path('', include('status.urls')),
