@@ -12,7 +12,7 @@ class StatusManager(models.Manager):
 
 
 def upload_status_image(instance, filename):
-    return "status/{user}{filename}/".format(user=instance.user, filename=filename)
+    return "status/{user}_{filename}/".format(user=instance.user, filename=filename)
 
 
 # Create your models here.

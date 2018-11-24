@@ -157,7 +157,7 @@ STATIC_ROOT = os.path.join(
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(
     os.path.dirname(BASE_DIR),
-    "django_restapi/static_cdn", "media_root"
+    "django_restapi/static_cdn", 'static-server', "media_root"
 )
 
 
