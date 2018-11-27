@@ -15,10 +15,10 @@ headers = {
 }
 
 data = {
-    "username": 'jakiiiiiiiii',
-    "email": 'jakiiiiiiii@jqurity.com',
-    "password": 'SADHIN101119',
-    "password2": 'SADHIN101119',
+    "username": 'jakiiiiiiiiiiiiiiii',
+    "email": 'jakiiiiiiiiiiiiiii@jqurity.com',
+    "password": 'password123',
+    "password2": 'password123',
 }
 
 r = requests.post(AUTH_ENDPOINT, data=json.dumps(data), headers=headers)
