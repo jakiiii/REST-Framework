@@ -2,28 +2,68 @@ import os
 import json
 import requests
 
-AUTH_ENDPOINT = 'http://127.0.0.1:8000/api/auth/register/'
-REFRESH_ENDPOINT = AUTH_ENDPOINT + 'refresh/'
-ENDPOINT = 'http://127.0.0.1:8000/api/status/'
+AUTH_ENDPOINT = "http://127.0.0.1:8000/api/auth/"
+REFRESH_ENDPOINT = AUTH_ENDPOINT + "refresh/"
 
 image_path = os.path.join(os.getcwd(), 'drf.png')
 
 
 headers = {
     "Content-Type": "application/json",
-    # "Authorization": "JWT " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Impha2kiLCJleHAiOjE1NDMxMTg3NDgsImVtYWlsIjoibW9oaW4ubnJAZ21haWwuY29tIn0.SkRSCP-JdaZofnEd0tdvJroPYXVumFxZ57Kt_SiUeLM"
 }
 
 data = {
-    "username": 'jakiiiiiiiiiiiiiiii',
-    "email": 'jakiiiiiiiiiiiiiii@jqurity.com',
-    "password": 'password123',
-    "password2": 'password123',
+    "username": '',
+    "password": '',
 }
 
 r = requests.post(AUTH_ENDPOINT, data=json.dumps(data), headers=headers)
-token = r.json()  # ['token']
+token = r.json()['token']
 print(token)
+
+BASE_ENDPOINT = 'http://127.0.0.1:8000/api/status/'
+ENDPOINT = BASE_ENDPOINT + '22/'
+
+headers2 = {
+    # "Content-Type": "application/json",
+    "Authorization": "JWT " + token
+}
+
+data2 = {
+    "content": "creating random content for permission test"
+}
+
+with open(image_path, 'rb') as image:
+    file_data = {
+        'image': image
+    }
+    # r = requests.put(ENDPOINT, data=data2, headers=headers2, files=file_data)
+    r = requests.post(BASE_ENDPOINT, data=data2, headers=headers2, files=file_data)
+    print(r.text)
+
+
+# AUTH_ENDPOINT = 'http://127.0.0.1:8000/api/auth/register/'
+# REFRESH_ENDPOINT = AUTH_ENDPOINT + 'refresh/'
+# ENDPOINT = 'http://127.0.0.1:8000/api/status/'
+#
+# image_path = os.path.join(os.getcwd(), 'drf.png')
+#
+#
+# headers = {
+#     "Content-Type": "application/json",
+#     # "Authorization": "JWT " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMSwidXNlcm5hbWUiOiJ1c2VyMSIsImV4cCI6MTU0MzMwNzA0NSwiZW1haWwiOiJ1c2VyMUBqcXVyaXR5LmNvbSJ9.c_5e8sCojcqzgw0kPc_FNd74-GnrF3bNWHLe9Lz_oQ0"
+# }
+#
+# data = {
+#     "username": 'user2',
+#     "email": 'user2@jqurity.com',
+#     "password": 'password123',
+#     "password2": 'password123',
+# }
+#
+# r = requests.post(AUTH_ENDPOINT, data=json.dumps(data), headers=headers)
+# token = r.json()  # ['token']
+# print(token)
 
 # headers = {
 #     "Content-Type": "application/json",
