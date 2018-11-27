@@ -26,6 +26,7 @@ urlpatterns = [
     path('', DRFHomeTemplateView.as_view()),
     path('', include('accounts.urls')),
     path('api/auth/', include('accounts.api.urls')),
+    path('api/user/', include('accounts.api.user.urls')),
     path('', include('updates.urls')),
     path('api/updates/', include('updates.api.urls')),
     path('', include('status.urls')),

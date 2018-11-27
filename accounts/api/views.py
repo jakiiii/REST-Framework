@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
 
 from .serializers import UserRegistrationSerializers
+from .user.serializers import UserDetailSerializer
 from .permissions import AnonPermissionOnly, IsOwnerOrReadOnly
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER

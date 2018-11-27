@@ -13,13 +13,13 @@ headers = {
 }
 
 data = {
-    "username": '',
-    "password": '',
+    "username": 'jaki',
+    "password": 'SADHIN101119',
 }
 
 r = requests.post(AUTH_ENDPOINT, data=json.dumps(data), headers=headers)
 token = r.json()['token']
-print(token)
+# print(token)
 
 BASE_ENDPOINT = 'http://127.0.0.1:8000/api/status/'
 ENDPOINT = BASE_ENDPOINT + '22/'
@@ -37,8 +37,9 @@ with open(image_path, 'rb') as image:
     file_data = {
         'image': image
     }
+    r = requests.get(ENDPOINT, headers=headers2)
     # r = requests.put(ENDPOINT, data=data2, headers=headers2, files=file_data)
-    r = requests.post(BASE_ENDPOINT, data=data2, headers=headers2, files=file_data)
+    # r = requests.post(BASE_ENDPOINT, data=data2, headers=headers2, files=file_data)
     print(r.text)
 
 

@@ -61,3 +61,18 @@ class UserRegistrationSerializers(serializers.ModelSerializer):
         user_obj.save()
         # user_obj.is_active = False
         return user_obj
+
+
+class UserPublicSerializers(serializers.ModelSerializer):
+    uri = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'username',
+            'uri'
+        ]
+
+    def get_uri(self, obj):
+        return "/api/user/{id}/".format(id=obj.id)
