@@ -27,7 +27,7 @@ class UserTestCase(APITestCase):
         }
         response = self.client.post(url, data, format='json')
         print(response.data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)  # 400
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data['password2'][0], 'This field is required.')
 
     def test_register_user_api(self):
